@@ -1,6 +1,5 @@
 # fixofx #
-
-## Canonicalize various financial data file formats to OFX 2 (a.k.a XML) ##
+### Canonicalize various financial data file formats to OFX 2 (a.k.a XML) ###
 
 `fixofx.py` is a Python utility that canonicalizes various financial data file
 formats to OFX 2, which is an XML format and hence a lot easier for other code
