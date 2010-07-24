@@ -16,6 +16,13 @@ makes best efforts but will not cover all cases. Also, some international
 formats are recognized and interpreted, such as British versus US date
 formats, but more work could be done on this.
 
+Sometimes a data file will not contain information that is important for OFX --
+for instance, neither OFC nor QIF include the OFX "FID" and "ORG" fields. Other times,
+the data format will include this data, but inconsistently, such as QIF's account
+type, which can be ambiguous or absent. In these cases you can ask the user to 
+provide hints to fixofx, and convey those hints via command-line options (see 
+_Command line operation_, below).
+
 The fixofx project also includes `fakeofx.py`, a utility script to generate fake
 OFX files for testing purposes.
 
@@ -105,6 +112,7 @@ ideas for things to do:
 * The OFX parser class has some ugly regular expression hacks added to deal
   with a variety of malformed OFX inputs. Each new regex makes things slower
   and makes the baby jwz cry. Find a better path. **(EASY)**
+* Fill in missing tests, especially in QIF conversion. **(MEDIUM)**
 * fixofx currently converts QIF to OFX/1, and then OFX/1 to OFX/2, which is
   totally crazy-pants and makes everything ungodly slow. Go straight from QIF
   to OFX/2 instead. **(MEDIUM)**
