@@ -1,11 +1,13 @@
-# *fixofx* - utility to canonicalize various financial data file formats to OFX 2 (a.k.a XML) #
+# fixofx #
 
-fixofx is a Python utility that canonicalizes various financial data file
+## Canonicalize various financial data file formats to OFX 2 (a.k.a XML) ##
+
+`fixofx.py` is a Python utility that canonicalizes various financial data file
 formats to OFX 2, which is an XML format and hence a lot easier for other code
 to deal with. It recognizes OFX 1.x, OFX 2.x, QFX, QIF, and OFC.
 
-Pipe a data file to fixofx.py, or specify an input file with the -f flag, and
-if the file is successfully parsed, an OFX/2.0 file with equivalent data will
+Pipe a data file to `fixofx.py`, or specify an input file with the `-f` flag, and
+if the file is successfully parsed, an OFX 2 file with equivalent data will
 be output.
 
 Various parts of fixofx go through contortions to try to interpret ambiguous
@@ -15,7 +17,7 @@ makes best efforts but will not cover all cases. Also, some international
 formats are recognized and interpreted, such as British versus US date
 formats, but more work could be done on this.
 
-The fixofx project also includes fakeofx.py, a utility script to generate fake
+The fixofx project also includes `fakeofx.py`, a utility script to generate fake
 OFX files for testing purposes.
 
 ## Installation ##
@@ -47,20 +49,20 @@ is equivalent to the above:
 
 There are several command line options, as follows:
 
-    -h, --help            show this help message and exit
-    -d, --debug           spit out gobs of debugging output during parse
-    -v, --verbose         be more talkative, social, outgoing
-    -t, --type            print input file type and exit
+    -h, --help                     show this help message and exit
+    -d, --debug                    spit out gobs of debugging output during parse
+    -v, --verbose                  be more talkative, social, outgoing
+    -t, --type                     print input file type and exit
     -f FILENAME, --file=FILENAME   source file to convert (writes to STDOUT)
     --fid=FID                      (OFC/QIF only) FID to use in output
     --org=ORG                      (OFC/QIF only) ORG to use in output
-    --curdef=CURDEF       (OFC/QIF only) Currency identifier to use in output
-    --lang=LANG           (OFC/QIF only) Language identifier to use in output
-    --bankid=BANKID       (QIF only) Routing number to use in output
-    --accttype=ACCTTYPE   (QIF only) Account type to use in output
-    --acctid=ACCTID       (QIF only) Account number to use in output
-    --balance=BALANCE     (QIF only) Account balance to use in output
-    --dayfirst            (QIF only) Parse dates day first (UK format)
+    --curdef=CURDEF                (OFC/QIF only) Currency identifier to use in output
+    --lang=LANG                    (OFC/QIF only) Language identifier to use in output
+    --bankid=BANKID                (QIF only) Routing number to use in output
+    --accttype=ACCTTYPE            (QIF only) Account type to use in output
+    --acctid=ACCTID                (QIF only) Account number to use in output
+    --balance=BALANCE              (QIF only) Account balance to use in output
+    --dayfirst                     (QIF only) Parse dates day first (UK format)
 
 ## Debugging ##
 
@@ -81,8 +83,8 @@ format.
 
 ## fakeofx.py ##
 
-The fakeofx.py script generates real-ish-seeming OFX for testing and demo
-purposes. You can generate a few fake OFX files using the script and upload
+The `fakeofx.py` script generates real-ish-seeming OFX for testing and demo
+purposes. You can generate a few fake OFX files using the script, and upload
 them to Wesabe to try it out or demonstrate it without showing your real
 account data to anyone.
 
@@ -98,28 +100,28 @@ ideas for things to do:
 
 * fixofx was written using Python 2.4, before ElementTree became part of the
   standard library. Tear out the old ElementTree from 3rdparty and replace it
-  with the etree module in the standard lib. (EASY)
+  with the etree module in the standard lib. **(EASY)**
 * fakeofx could use some command line options and a little more control over
-  the output. (EASY)
+  the output. **(EASY)**
 * The OFX parser class has some ugly regular expression hacks added to deal
   with a variety of malformed OFX inputs. Each new regex makes things slower
-  and makes the baby jwz cry. Find a better path. (EASY)
+  and makes the baby jwz cry. Find a better path. **(EASY)**
 * fixofx currently converts QIF to OFX/1, and then OFX/1 to OFX/2, which is
   totally crazy-pants and makes everything ungodly slow. Go straight from QIF
-  to OFX/2 instead. (MEDIUM)
+  to OFX/2 instead. **(MEDIUM)**
 * Some people would be happy if fixofx accepted a bunch of input formats (as
   it does) and had options for outputing any of those formats, too (right now
   OFX/2 output is the only option). Basically, convert everything to an
   internal representation and then output whatever kind of document the user
-  wants. (MEDIUM)
+  wants. **(MEDIUM)**
 * The date format parsing could be a lot more intelligent, using windows of
   transactions to guess the date format instead of requiring at least one
-  unambiguous date. (MEDIUM)
+  unambiguous date. **(MEDIUM)**
 * The test suite uses the old unittest module, which is super annoying.
-  Convert the tests to use `nose` instead. (MEDIUM)
+  Convert the tests to use `nose` instead. **(MEDIUM)**
 * There is the start of a CSV converter in lib/ofxtools. This has to be one of
-  the most-requested Wesabe features evar. Have at it. (HARD)
+  the most-requested Wesabe features evar. Have at it. **(HARD)**
 * Convert this whole thing to ruby so it can be run in the Rails process
   instead of as an external script. The original reasons it was done in python
   don't matter any more and running it internally would be a lot more stable.
-  Or go straight to Java and make it part of BRCM. (HARD EITHER WAY)
+  Or go straight to Java and make it part of BRCM. **(HARD EITHER WAY)**
