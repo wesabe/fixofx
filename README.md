@@ -104,9 +104,10 @@ Contributions to fixofx are welcome. Please add tests for your contribution
 and make sure all tests pass before sending a pull request. Here are some
 ideas for things to do:
 
-* fixofx was written using Python 2.4, before ElementTree became part of the
+* <strike>fixofx was written using Python 2.4, before ElementTree became part of the
   standard library. Tear out the old ElementTree from 3rdparty and replace it
-  with the etree module in the standard lib. **(EASY)**
+  with the etree module in the standard lib. (EASY)</strike> **DONE** -- thanks, 
+  [jmilum](http://github.com/jmilum)!
 * fakeofx could use some command line options and a little more control over
   the output. **(EASY)**
 * The OFX parser class has some ugly regular expression hacks added to deal
