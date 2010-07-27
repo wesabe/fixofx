@@ -23,7 +23,7 @@ import os
 import pprint
 import unittest
 from xml.parsers.expat import ExpatError
-from elementtree import ElementTree
+import xml.etree.ElementTree as ElementTree 
 
 class ResponseTests(unittest.TestCase):
     def setUp(self):
