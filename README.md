@@ -104,10 +104,6 @@ Contributions to fixofx are welcome. Please add tests for your contribution
 and make sure all tests pass before sending a pull request. Here are some
 ideas for things to do:
 
-* <strike>fixofx was written using Python 2.4, before ElementTree became part of the
-  standard library. Tear out the old ElementTree from 3rdparty and replace it
-  with the etree module in the standard lib. (EASY)</strike> **DONE** -- thanks, 
-  [jmilum](http://github.com/jmilum)!
 * fakeofx could use some command line options and a little more control over
   the output. **(EASY)**
 * The OFX parser class has some ugly regular expression hacks added to deal
@@ -133,3 +129,10 @@ ideas for things to do:
   instead of as an external script. The original reasons it was done in python
   don't matter any more and running it internally would be a lot more stable.
   Or go straight to Java and make it part of BRCM. **(HARD EITHER WAY)**
+
+## Thanks ##
+
+The following people have contributed patches to fixofx - thanks!
+
+* [James Nylen](http://github.com/nylen)
+* [Jeremy Milum](http://github.com/jmilum)
