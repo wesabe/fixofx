@@ -33,7 +33,7 @@ has not been tested at all with Python 3.
 
 Just clone the repo from GitHub and you're good to go:
 
-    git clone git@github.com:wesabe/fixofx.git
+    git clone git://github.com/wesabe/fixofx.git
 
 ## Tests ##
 
