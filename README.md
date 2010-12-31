@@ -101,17 +101,17 @@ choose to generate a checking or credit card statement and has no options.
 
 ## lynofx.py ##
 
-The `lynofx.py` script connects to OFX servers from the command line -- the
-name is meant to suggest "Lynx for OFX."  This can be very useful when testing
-out OFX connections or debugging a connection to a particular server.
+The `lynofx.py` script is a command-line OFX client -- the name is meant to 
+suggest "[Lynx](http://lynx.browser.org/) for OFX."  This can be very useful when 
+testing out OFX connections or debugging a connection to a particular server.
 
 `lynofx.py` requires a number of options to work.  Some of the options ask for
 account information, but many ask for OFX parameters that are required for the
 request.  Unfortunately the OFX parameters for different financial institutions
 are not well known, and they are not included with this script.  The three values
 needed are the OFX URL, OFX FID, and OFX ORG.  One place to look for these values
-is at http://wiki.gnucash.org/wiki/OFX_Direct_Connect_Bank_Settings or just 
-searching on Google.  If neither of those work, try calling your financial 
+is at [the GNUCash wiki](http://wiki.gnucash.org/wiki/OFX_Direct_Connect_Bank_Settings)
+or just searching on Google.  If neither of those work, try calling your financial 
 institution and asking them; larger credit unions, especially, are sometimes 
 willing to help.
 
