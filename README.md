@@ -24,7 +24,8 @@ provide hints to fixofx, and convey those hints via command-line options (see
 _Command line operation_, below).
 
 The fixofx project also includes `fakeofx.py`, a utility script to generate fake
-OFX files for testing purposes.
+OFX files for testing purposes; and `lynofx.py`, a utility for making OFX server
+requests from the command line (like a "Lynx for OFX").
 
 ## Installation ##
 
