@@ -94,7 +94,15 @@ if options.verbose:
 # FIXME: should check to make sure all required options for this action were provided.
 
 if action != "profile":
-    sys.stdout.write("Enter account username: ")
+    # The following allows the username prompt to be written even if output is redirected.
+    # On UNIX and Mac, that is. The sys.stdout fallback should work elsewhere, assuming
+    # people on those other platforms aren't redirecting output like the UNIX-heads are.
+    terminal = None
+    if os.access("/dev/tty", os.W_OK):
+        terminal = open("/dev/tty", 'w')
+    else:
+        terminal = sys.stdout
+    terminal.write("Enter account username: ")
     username = sys.stdin.readline().rstrip()
     password = getpass.getpass("Enter account password: ")
     print
@@ -157,8 +165,9 @@ except ofx.Error, exception:
         print client.get_request_message() 
         print
     
-    print "*** Server returned an OFX error:\n"
-    print exception
+    sys.stderr.write("*** Server returned an OFX error:\n")
+    sys.stderr.write(str(exception))
+    sys.stderr.write("\n")
     sys.exit(3)
 
 except urllib2.HTTPError, exception:
@@ -170,9 +179,10 @@ except urllib2.HTTPError, exception:
         print client.get_request_message() 
         print
     
-    print "*** Server returned an HTTP error:\n"
-    print exception
-    print exception.hdrs
-    print exception.fp.read()
+    sys.stderr.write("*** Server returned an HTTP error:\n")
+    sys.stderr.write(str(exception))
+    sys.stderr.write(str(exception.hdrs))
+    sys.stderr.write(exception.fp.read())
+    sys.stderr.write("\n")
     sys.exit(4)
     
