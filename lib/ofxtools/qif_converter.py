@@ -78,6 +78,7 @@ class QifConverter:
                            "POS"         : "POS",
                            "XFER"        : "XFER",
                            "CHECK"       : "CHECK",
+                           "Checks"      : "CHECK",
                            "PAYMENT"     : "PAYMENT",
                            "CASH"        : "CASH",
                            "DIRECTDEP"   : "DIRECTDEP",
@@ -338,6 +339,7 @@ class QifConverter:
 
     def _clean_txn_number(self, txn):
         txn_number  = txn.get("Number", "UNKNOWN").strip()
+        txn_payee  = txn.get("Payee", "UNKNOWN").strip()
 
         # Clean up bad check number behavior
         all_digits = re.compile("\d+")
@@ -367,6 +369,13 @@ class QifConverter:
             # Washington Mutual doesn't indicate a CHECK transaction
             # when a check number is present.
             txn["Type"] = "CHECK"
+
+        elif txn_payee.startswith("CHECK # "):
+            # USAA QIF export sends blank number fields but has the check
+            # number in the payee field instead padded with leading zeros
+            number = re.search("^CHECK # (\d+)", txn_payee)
+            if number is not None:
+                txn["Number"] = number.group(1).lstrip('0')
 
     def _clean_txn_type(self, txn):
         txn_type    = "UNKNOWN"

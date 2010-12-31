@@ -324,6 +324,20 @@ class QifConverterTests(unittest.TestCase):
         txn = converter.txns_by_date["20070125"][0]
         self.assertEqual(txn.get("Type"), "CHECK")
     
+    def test_usaa_check(self):
+        qiftext = textwrap.dedent('''\
+        !Type:Bank
+        D01/25/2007
+        T-22.00
+        N
+        PCHECK # 0000005287
+        MChecks
+        ^
+        ''')
+        converter = ofxtools.QifConverter(qiftext)
+        txn = converter.txns_by_date["20070125"][0]
+        self.assertEqual(txn.get("Type"), "CHECK")
+        self.assertEqual(txn.get("Number"), "5287")
 
 if __name__ == '__main__':
     unittest.main()
