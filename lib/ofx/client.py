@@ -26,11 +26,12 @@ class Client:
     error flags and throwing errors as exceptions, and returning the
     requested OFX document if the request was successful."""
 
-    def __init__(self):
+    def __init__(self, debug=False):
         """Constructs the Client object.  No configuration options
         are offered."""
         # FIXME: Need to let the client set itself for OFX 1.02 or OFX 2.0 formatting.
         self.request_msg = None
+        self.debug = debug
 
     def get_fi_profile(self, institution,
                        username="anonymous00000000000000000000000",
@@ -143,6 +144,9 @@ class Client:
         stream = urllib2.urlopen(request)
         response = stream.read()
         stream.close()
+
+        if self.debug:
+            print response
 
         response = ofx.Response(response)
         response.check_signon_status()
