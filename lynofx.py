@@ -105,7 +105,6 @@ if action != "profile":
     terminal.write("Enter account username: ")
     username = sys.stdin.readline().rstrip()
     password = getpass.getpass("Enter account password: ")
-    print
 
 institution = ofx.Institution(ofx_org=options.org, 
                               ofx_url=options.url, 
